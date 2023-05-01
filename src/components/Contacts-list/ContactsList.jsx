@@ -5,12 +5,12 @@ import { StyledContactsList } from './StyledContactsList';
 const ContactsList = ({ contacts, handleDeleteBtnClick }) => {
   return (
     <StyledContactsList>
-      {contacts.map(({ name, number, id }) => {
+      {contacts.map(({ name, phone, id }) => {
         return (
           <ContactsListElement
             key={id}
             name={name}
-            number={number}
+            number={phone}
             id={id}
             handleDeleteBtnClick={handleDeleteBtnClick}
           />
