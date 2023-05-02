@@ -1,5 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { addContactThunk, fetchContactsThunk } from './operations';
+import {
+  addContactThunk,
+  deleteContactThunk,
+  fetchContactsThunk,
+} from './operations';
 
 const initialState = {
   contacts: {
@@ -25,6 +29,11 @@ const contactsSlice = createSlice({
       })
       .addCase(addContactThunk.fulfilled, (state, action) => {
         state.contacts.items.push(action.payload);
+      })
+      .addCase(deleteContactThunk.fulfilled, (state, action) => {
+        state.contacts.items = state.contacts.items.filter(contact => {
+          return contact.id !== action.payload;
+        });
       })
       .addMatcher(
         action => action.type.endsWith('/rejected'),
